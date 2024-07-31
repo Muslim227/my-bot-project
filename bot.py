@@ -1,23 +1,20 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-# تعريف دالة التعامل مع أمر /start
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('مرحبًا! أنا بوتك الجديد.')
+    # إرسال رسالة ترحيبية عند استخدام الأمر /start
+    update.message.reply_text('مرحبا! أنا بوتك الشخصي. كيف يمكنني مساعدتك اليوم؟')
 
-# الدالة الرئيسية لتشغيل البوت
 def main():
-    # استبدل YOUR_TOKEN_HERE بالتوكن الذي حصلت عليه من BotFather
-    updater = Updater("7066406153:AAElhgRtEeRR34DOx9fhLoteeVwgxHbV4zg")
+    # أدخل التوكن الخاص بك هنا
+    updater = Updater("7066406153:AAElhgRtEeRR34DOx9fhLoteeVwgxHbV4zg", use_context=True)
     dispatcher = updater.dispatcher
 
-    # إضافة معالج الأمر /start
+    # إضافة معالج للأمر /start
     dispatcher.add_handler(CommandHandler("start", start))
 
-    # بدء استقبال التحديثات من تليجرام
+    # بدء تشغيل البوت
     updater.start_polling()
-
-    # إبقاء البوت قيد التشغيل حتى يتم إيقافه يدويًا
     updater.idle()
 
 if __name__ == '__main__':
